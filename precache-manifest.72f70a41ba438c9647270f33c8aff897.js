@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/triangleChallenge/static/js/2.a0962b87.chunk.js"
   },
   {
-    "revision": "d1d02ef1c8ae107ed59d6ff78b9dbef3",
+    "revision": "913569e57b759db9b33a30c5da388b96",
     "url": "/triangleChallenge/index.html"
   }
 ];

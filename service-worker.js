@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/triangleChallenge/precache-manifest.15a3608fbeb01f6ad991a709f39829a4.js"
+  "/triangleChallenge/precache-manifest.72f70a41ba438c9647270f33c8aff897.js"
 );
 
 workbox.clientsClaim();
