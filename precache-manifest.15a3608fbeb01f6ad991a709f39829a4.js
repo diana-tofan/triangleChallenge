@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "614e3e027a66dc13e652",
+    "revision": "f2d02441084ee5a54197",
     "url": "/triangleChallenge/static/css/main.226b4ccd.chunk.css"
   },
   {
-    "revision": "614e3e027a66dc13e652",
-    "url": "/triangleChallenge/static/js/main.fd940c2b.chunk.js"
+    "revision": "f2d02441084ee5a54197",
+    "url": "/triangleChallenge/static/js/main.1ba12399.chunk.js"
   },
   {
     "revision": "aee2dc8fd2f91e6d295a",
@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/triangleChallenge/static/js/2.a0962b87.chunk.js"
   },
   {
-    "revision": "c9bc7c72deee780355670a4fb3924811",
+    "revision": "d1d02ef1c8ae107ed59d6ff78b9dbef3",
     "url": "/triangleChallenge/index.html"
   }
 ];
