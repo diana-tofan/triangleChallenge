@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/Triangle-challenge/precache-manifest.90c0a0973e4230bc5665573781d8cb16.js"
+  "/triangleChallenge/precache-manifest.b48d5d988ac364d84a67c07f54a78621.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/Triangle-challenge/index.html", {
+workbox.routing.registerNavigationRoute("/triangleChallenge/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });

@@ -1,13 +1,13 @@
 {
-  "main.css": "/Triangle-challenge/static/css/main.226b4ccd.chunk.css",
-  "main.js": "/Triangle-challenge/static/js/main.8410dfca.chunk.js",
-  "main.js.map": "/Triangle-challenge/static/js/main.8410dfca.chunk.js.map",
-  "runtime~main.js": "/Triangle-challenge/static/js/runtime~main.11df2014.js",
-  "runtime~main.js.map": "/Triangle-challenge/static/js/runtime~main.11df2014.js.map",
-  "static/js/2.a0962b87.chunk.js": "/Triangle-challenge/static/js/2.a0962b87.chunk.js",
-  "static/js/2.a0962b87.chunk.js.map": "/Triangle-challenge/static/js/2.a0962b87.chunk.js.map",
-  "index.html": "/Triangle-challenge/index.html",
-  "precache-manifest.90c0a0973e4230bc5665573781d8cb16.js": "/Triangle-challenge/precache-manifest.90c0a0973e4230bc5665573781d8cb16.js",
-  "service-worker.js": "/Triangle-challenge/service-worker.js",
-  "static/css/main.226b4ccd.chunk.css.map": "/Triangle-challenge/static/css/main.226b4ccd.chunk.css.map"
+  "main.css": "/triangleChallenge/static/css/main.226b4ccd.chunk.css",
+  "main.js": "/triangleChallenge/static/js/main.57018f64.chunk.js",
+  "main.js.map": "/triangleChallenge/static/js/main.57018f64.chunk.js.map",
+  "runtime~main.js": "/triangleChallenge/static/js/runtime~main.111300a4.js",
+  "runtime~main.js.map": "/triangleChallenge/static/js/runtime~main.111300a4.js.map",
+  "static/js/2.a0962b87.chunk.js": "/triangleChallenge/static/js/2.a0962b87.chunk.js",
+  "static/js/2.a0962b87.chunk.js.map": "/triangleChallenge/static/js/2.a0962b87.chunk.js.map",
+  "index.html": "/triangleChallenge/index.html",
+  "precache-manifest.b48d5d988ac364d84a67c07f54a78621.js": "/triangleChallenge/precache-manifest.b48d5d988ac364d84a67c07f54a78621.js",
+  "service-worker.js": "/triangleChallenge/service-worker.js",
+  "static/css/main.226b4ccd.chunk.css.map": "/triangleChallenge/static/css/main.226b4ccd.chunk.css.map"
 }
