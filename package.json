@@ -1,0 +1,37 @@
+{
+  "name": "triangle-challenge",
+  "description": "Program that classifies a triangle given its side lengths.",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-scripts": "2.1.8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/diana-tofan/Triangle-challenge"
+  },
+  "author": "Diana Tofan <diana_tofan@ymail.com>",
+  "homepage": "https://diana-tofan.github.io/Triangle-challenge",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "devDependencies": {
+    "gh-pages": "^2.0.1"
+  }
+}
