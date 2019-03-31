@@ -56,7 +56,10 @@ $ npm run deploy
 ```
 
 ## Running the tests
-The project uses [Mocha.js](https://mochajs.org/) framework to run tests.
+The project uses [Jest](https://jestjs.io/) framework to run tests.
+```
+$ npm run test
+```
 
 ### Break down into unit tests
 
@@ -68,7 +71,7 @@ The tests ensure that:
 
 ### Built With
 * [React.js](https://reactjs.org/) - The web framework used
-* [Mocha.js](https://mochajs.org/) - Unit testing
+* [Jest](https://jestjs.io/) - Unit testing
 * [Tradeshift UI](http://ui.tradeshift.com/v12/#intro/) - UI components
 
 ## Authors
@@ -77,6 +80,6 @@ The tests ensure that:
 ## Implementation Choices
 React.js was mainly used for simplicity, performance, testability and a smooth state management.
 
-For testing purposes, Mocha.js was chosen due to its flexibility and compatibility with several JavaScript assertion libraries.
+For testing purposes, Jest was chosen due to the fact that it works out of the box with minimal setup or configuration.
 
 Ultimately, Tradeshift UI was used to speed up the development time by integrating reusable Tradeshift UI elements into the app.

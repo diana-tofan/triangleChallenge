@@ -18,17 +18,19 @@ class App extends Component {
   }
 
   render() {
-    const onKeyDown = (ev, side) => {
+    const onKeyDown = ev => {
       const value = ev.target.value;
       // Ensure the input string is a valid floating point number
       if ([69, 187, 188, 189].includes(ev.keyCode) || // prevent 'e', '=', ',' and '-' from being typed
         (ev.keyCode === 190 && value.indexOf('.') !== -1)) { // allow only one dot
         ev.preventDefault();
-      } else {
-        this.setState({
-          [side]: value
-        });
       }
+    };
+
+    const onChange = (ev, side) => {
+      this.setState({
+        [side]: ev.target.value
+      });
     };
 
     const isTriangle = (side1, side2, side3) => {
@@ -54,6 +56,8 @@ class App extends Component {
           message = 'Input field is null';
         } else if (side === '') { // if side length is empty
           message = 'Input field is empty';
+        } else if (side < 0) { // if side length is negative
+          message = 'Input field should be positive';
         }
         this.setState({
           [key]: message // we update the error message
@@ -73,7 +77,7 @@ class App extends Component {
       side2 = !!side2 ? parseFloat(side2) : side2;
       side3 = !!side3 ? parseFloat(side3) : side3;
       /* Before determining the triangle type, we perform two kinds of validation:
-          validateLengths - ensures the given side lengths are not 0 or empty
+          validateLengths - ensures the given side lengths are greater than 0 and not empty
           isTriangle - checks whether the given side lengths can form a triangle (based on triangle inequality theorem)
       */
       if (validateLengths([side1, side2, side3]) && isTriangle(side1, side2, side3)) {
@@ -100,7 +104,8 @@ class App extends Component {
                 <span>Side 1</span>
                 <input
                   type='number'
-                  onKeyDown={ev => onKeyDown(ev, 'side1')}
+                  onKeyDown={ev => onKeyDown(ev)}
+                  onChange={ev => onChange(ev, 'side1')}
                 />
               </label>
               {
@@ -116,7 +121,8 @@ class App extends Component {
                 <span>Side 2</span>
                 <input
                   type='number'
-                  onKeyDown={ev => onKeyDown(ev, 'side2')}
+                  onKeyDown={ev => onKeyDown(ev)}
+                  onChange={ev => onChange(ev, 'side2')}
                 />
               </label>
               {
@@ -132,7 +138,8 @@ class App extends Component {
                 <span>Side 3</span>
                 <input
                   type='number'
-                  onKeyDown={ev => onKeyDown(ev, 'side3')}
+                  onKeyDown={ev => onKeyDown(ev)}
+                  onChange={ev => onChange(ev, 'side3')}
                 />
               </label>
               {
