@@ -22,7 +22,7 @@ class App extends Component {
       const value = ev.target.value;
       // Ensure the input string is a valid floating point number
       if ([69, 187, 188, 189].includes(ev.keyCode) || // prevent 'e', '=', ',' and '-' from being typed
-        (ev.keyCode === 190 && value.split('.').length > 1)) { // allow only one dot
+        (ev.keyCode === 190 && value.indexOf('.') !== -1)) { // allow only one dot
         ev.preventDefault();
       } else {
         this.setState({
@@ -50,12 +50,10 @@ class App extends Component {
       const isValid = (side, nr) => { // side = side length, nr = side index (1, 2 or 3)
         const key = `side${nr}Err`;
         let message = ''; // error message is initially empty
-        if (side === '') { // if side length is empty
+        if (side === 0) { // if side length is 0
+          message = 'Input field is null';
+        } else if (side === '') { // if side length is empty
           message = 'Input field is empty';
-        } else if (side <= 0) { // if side length is negative
-          message = 'A positive number is required';
-        } else if (isNaN(side)) {
-          message = 'Not a number'; // if side length is not a valid number
         }
         this.setState({
           [key]: message // we update the error message
@@ -70,12 +68,12 @@ class App extends Component {
     const getTriangleType = () => {
       let triangleType = '';
       let { side1, side2, side3 } = this.state; // triangle side lengths
-      // Convert the user input strings to numbers
+      // Convert the user input strings to numbers (if they are not empty)
       side1 = !!side1 ? parseFloat(side1) : side1;
       side2 = !!side2 ? parseFloat(side2) : side2;
       side3 = !!side3 ? parseFloat(side3) : side3;
       /* Before determining the triangle type, we perform two kinds of validation:
-          validateLengths - ensures the given side lengths are positive and not empty
+          validateLengths - ensures the given side lengths are not 0 or empty
           isTriangle - checks whether the given side lengths can form a triangle (based on triangle inequality theorem)
       */
       if (validateLengths([side1, side2, side3]) && isTriangle(side1, side2, side3)) {
