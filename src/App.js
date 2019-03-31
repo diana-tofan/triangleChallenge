@@ -18,13 +18,21 @@ class App extends Component {
   }
 
   render() {
-    const onChange = (ev, side) =>
-      this.setState({
-        [side]: ev.target.value
-      });
+    const onKeyDown = (ev, side) => {
+      const value = ev.target.value;
+      // Ensure the input string is a valid floating point number
+      if ([69, 187, 188, 189].includes(ev.keyCode) || // prevent 'e', '=', ',' and '-' from being typed
+        (ev.keyCode === 190 && value.split('.').length > 1)) { // allow only one dot
+        ev.preventDefault();
+      } else {
+        this.setState({
+          [side]: value
+        });
+      }
+    };
 
     const isTriangle = (side1, side2, side3) => {
-      if ((side1 + side2 > side3) && (side1 + side3 > side2) && (side2 + side3 > side1)) {
+      if ((side1 + side2 > side3) && (side1 + side3 > side2) && (side2 + side3 > side1)) { // triangle inequality theorem
         this.setState({
           triangleErr: ''
         });
@@ -37,35 +45,45 @@ class App extends Component {
       }
     };
 
-    const validateLengths = sides => {
-      const isValid = (side, nr) => {
+    const validateLengths = sides => { // 'sides' is an array containing the 3 side lengths
+      // Function that verifies if a given side length is valid
+      const isValid = (side, nr) => { // side = side length, nr = side index (1, 2 or 3)
         const key = `side${nr}Err`;
-        let message = '';
-        if (isNaN(side)) {
+        let message = ''; // error message is initially empty
+        if (side === '') { // if side length is empty
           message = 'Input field is empty';
-        } else if (side <= 0) {
+        } else if (side <= 0) { // if side length is negative
           message = 'A positive number is required';
+        } else if (isNaN(side)) {
+          message = 'Not a number'; // if side length is not a valid number
         }
         this.setState({
-          [key]: message
+          [key]: message // we update the error message
         });
-        return message === '';
+        return message === ''; // if error message is still empty, then the side length is valid
       };
+      // We filter out the invalid lengths from the 'sides' array
+      // If the array stays untouched (i.e. still contains 3 items), then all triangle lengths are valid
       return sides.filter((side, i) => isValid(side, i + 1)).length === 3;
     };
 
     const getTriangleType = () => {
       let triangleType = '';
-      let { side1, side2, side3 } = this.state;
-      side1 = parseFloat(side1);
-      side2 = parseFloat(side2);
-      side3 = parseFloat(side3);
+      let { side1, side2, side3 } = this.state; // triangle side lengths
+      // Convert the user input strings to numbers
+      side1 = !!side1 ? parseFloat(side1) : side1;
+      side2 = !!side2 ? parseFloat(side2) : side2;
+      side3 = !!side3 ? parseFloat(side3) : side3;
+      /* Before determining the triangle type, we perform two kinds of validation:
+          validateLengths - ensures the given side lengths are positive and not empty
+          isTriangle - checks whether the given side lengths can form a triangle (based on triangle inequality theorem)
+      */
       if (validateLengths([side1, side2, side3]) && isTriangle(side1, side2, side3)) {
-        if (side1 === side2 && side2 === side3 && side1 === side3) {
+        if (side1 === side2 && side2 === side3 && side1 === side3) { // if all three sides are equal
           triangleType = 'equilateral';
-        } else if (side1 === side2 || side2 === side3 || side1 === side3) {
+        } else if (side1 === side2 || side2 === side3 || side1 === side3) { // if two sides are equal
           triangleType = 'isosceles';
-        } else {
+        } else { // if no sides are equal
           triangleType = 'scalene';
         }
       }
@@ -76,52 +94,52 @@ class App extends Component {
 
     return (
       <div>
-        <div data-ts="Board" className="board">
-          <div data-ts="Panel">
-          <form data-ts="Form">
-            <fieldset className="ts-fieldset">
+        <div data-ts='Board' className='board'>
+          <div data-ts='Panel'>
+          <form data-ts='Form'>
+            <fieldset className='ts-fieldset'>
               <label className={classNames({'ts-error': this.state.side1Err || this.state.triangleErr})}>
                 <span>Side 1</span>
                 <input
-                  type="number"
-                  onChange={ev => onChange(ev, 'side1')}
+                  type='number'
+                  onKeyDown={ev => onKeyDown(ev, 'side1')}
                 />
               </label>
               {
                 !!this.state.side1Err &&
-                <dl className="ts-errors">
+                <dl className='ts-errors'>
                   <dt>Invalid value</dt>
                   <dd>{this.state.side1Err}</dd>
                 </dl>
               }
             </fieldset>
-            <fieldset className="ts-fieldset">
+            <fieldset className='ts-fieldset'>
               <label className={classNames({'ts-error': this.state.side2Err || this.state.triangleErr})}>
                 <span>Side 2</span>
                 <input
-                  type="number"
-                  onChange={ev => onChange(ev, 'side2')}
+                  type='number'
+                  onKeyDown={ev => onKeyDown(ev, 'side2')}
                 />
               </label>
               {
                 !!this.state.side2Err &&
-                <dl className="ts-errors">
+                <dl className='ts-errors'>
                   <dt>Invalid value</dt>
                   <dd>{this.state.side2Err}</dd>
                 </dl>
               }
             </fieldset>
-            <fieldset className="ts-fieldset">
+            <fieldset className='ts-fieldset'>
               <label className={classNames({'ts-error': this.state.side3Err || this.state.triangleErr})}>
                 <span>Side 3</span>
                 <input
-                  type="number"
-                  onChange={ev => onChange(ev, 'side3')}
+                  type='number'
+                  onKeyDown={ev => onKeyDown(ev, 'side3')}
                 />
               </label>
               {
                 !!this.state.side3Err &&
-                <dl className="ts-errors">
+                <dl className='ts-errors'>
                   <dt>Invalid value</dt>
                   <dd>{this.state.side3Err}</dd>
                 </dl>
@@ -129,8 +147,8 @@ class App extends Component {
             </fieldset>
             <div className='button-wrapper'>
               <button
-                data-ts="Button"
-                className="ts-primary"
+                data-ts='Button'
+                className='ts-primary'
                 onClick={getTriangleType}
               >
                 <span>Get triangle type</span>
