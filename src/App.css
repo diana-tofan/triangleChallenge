@@ -16,3 +16,11 @@
   text-align: center;
   margin: 34px 0 10px 0;
 }
+
+.ts-icon-menuswitch {
+  color: white !important;
+}
+
+.triangle-error {
+  color: #BD0000;
+}

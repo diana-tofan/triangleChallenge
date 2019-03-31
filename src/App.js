@@ -10,9 +10,10 @@ class App extends Component {
       side2: '',
       side3: '',
       triangleType: '',
-      side1Err: false,
-      side2Err: false,
-      side3Err: false
+      side1Err: '',
+      side2Err: '',
+      side3Err: '',
+      triangleErr: ''
     }
   }
 
@@ -22,51 +23,55 @@ class App extends Component {
         [side]: ev.target.value
       });
 
-    const validateLengths = (side1, side2, side3) => {
+    const isTriangle = (side1, side2, side3) => {
+      if ((side1 + side2 > side3) && (side1 + side3 > side2) && (side2 + side3 > side1)) {
+        this.setState({
+          triangleErr: ''
+        });
+        return true;
+      } else {
+        this.setState({
+          triangleErr: 'Sum of two side lengths should always be greater than third side'
+        });
+        return false;
+      }
+    };
+
+    const validateLengths = sides => {
       const isValid = (side, nr) => {
         const key = `side${nr}Err`;
-        if (side === '') {
-          this.setState({
-            [key]: {
-              message: 'Input field is empty'
-            }
-          });
+        let message = '';
+        if (isNaN(side)) {
+          message = 'Input field is empty';
         } else if (side <= 0) {
-          this.setState({
-            [key]: {
-              message: 'A positive number is required'
-            }
-          });
+          message = 'A positive number is required';
         }
+        this.setState({
+          [key]: message
+        });
+        return message === '';
       };
-      isValid(side1, '1');
-      isValid(side2, '2');
-      isValid(side3, '3');
-      return !this.state.side1Err && !this.state.side2Err && !this.state.side3Err;
+      return sides.filter((side, i) => isValid(side, i + 1)).length === 3;
     };
 
     const getTriangleType = () => {
-      this.setState({
-        side1Err: false,
-        side2Err: false,
-        side3Err: false
-      });
-      const { side1, side2, side3 } = this.state;
-      if (validateLengths(side1, side2, side3)) {
+      let triangleType = '';
+      let { side1, side2, side3 } = this.state;
+      side1 = parseFloat(side1);
+      side2 = parseFloat(side2);
+      side3 = parseFloat(side3);
+      if (validateLengths([side1, side2, side3]) && isTriangle(side1, side2, side3)) {
         if (side1 === side2 && side2 === side3 && side1 === side3) {
-          this.setState({
-            triangleType: 'equilateral'
-          });
+          triangleType = 'equilateral';
         } else if (side1 === side2 || side2 === side3 || side1 === side3) {
-          this.setState({
-            triangleType: 'isosceles'
-          });
+          triangleType = 'isosceles';
         } else {
-          this.setState({
-            triangleType: 'scalene'
-          });
+          triangleType = 'scalene';
         }
       }
+      this.setState({
+        triangleType
+      });
     };
 
     return (
@@ -75,7 +80,7 @@ class App extends Component {
           <div data-ts="Panel">
           <form data-ts="Form">
             <fieldset className="ts-fieldset">
-              <label className={classNames({'ts-error': this.state.side1Err})}>
+              <label className={classNames({'ts-error': this.state.side1Err || this.state.triangleErr})}>
                 <span>Side 1</span>
                 <input
                   type="number"
@@ -83,15 +88,15 @@ class App extends Component {
                 />
               </label>
               {
-                this.state.side1Err &&
+                !!this.state.side1Err &&
                 <dl className="ts-errors">
                   <dt>Invalid value</dt>
-                  <dd>{this.state.side1Err.message}</dd>
+                  <dd>{this.state.side1Err}</dd>
                 </dl>
               }
             </fieldset>
             <fieldset className="ts-fieldset">
-              <label className={classNames({'ts-error': this.state.side2Err})}>
+              <label className={classNames({'ts-error': this.state.side2Err || this.state.triangleErr})}>
                 <span>Side 2</span>
                 <input
                   type="number"
@@ -99,15 +104,15 @@ class App extends Component {
                 />
               </label>
               {
-                this.state.side2Err &&
+                !!this.state.side2Err &&
                 <dl className="ts-errors">
                   <dt>Invalid value</dt>
-                  <dd>{this.state.side2Err.message}</dd>
+                  <dd>{this.state.side2Err}</dd>
                 </dl>
               }
             </fieldset>
             <fieldset className="ts-fieldset">
-              <label className={classNames({'ts-error': this.state.side3Err})}>
+              <label className={classNames({'ts-error': this.state.side3Err || this.state.triangleErr})}>
                 <span>Side 3</span>
                 <input
                   type="number"
@@ -115,10 +120,10 @@ class App extends Component {
                 />
               </label>
               {
-                this.state.side3Err &&
+                !!this.state.side3Err &&
                 <dl className="ts-errors">
                   <dt>Invalid value</dt>
-                  <dd>{this.state.side3Err.message}</dd>
+                  <dd>{this.state.side3Err}</dd>
                 </dl>
               }
             </fieldset>
@@ -133,11 +138,18 @@ class App extends Component {
             </div>
           </form>
           {
-            !!this.state.triangleType && !this.state.side1Err && !this.state.side2Err && !this.state.side3Err &&
+            !!this.state.triangleType &&
             <div className='triangle-type'>
               Triangle is <b>{this.state.triangleType}</b>
             </div>
           }
+            {
+              !!this.state.triangleErr &&
+              <dl className='ts-errors triangle-type triangle-error'>
+                <dt><b>Invalid triangle</b></dt>
+                <dd>{this.state.triangleErr}</dd>
+              </dl>
+            }
           </div>
         </div>
       </div>
