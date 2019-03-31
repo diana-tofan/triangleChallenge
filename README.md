@@ -1,19 +1,18 @@
-### Triangle challenge
+# Triangle challenge
 
 Application that classifies a triangle as equilateral, isosceles or scalene based on its given side lengths.
 
-#### Solution
+## Solution
 The solution is published on the following website:
  
  https://diana-tofan.github.io/triangleChallenge/
  
  
-
-#### Getting started
+## Getting started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-##### Prerequisites
+### Prerequisites
 
 This project is using [NPM](https://www.npmjs.com), hence you will need [Node.js](https://nodejs.org/en/) installed on your environment.
 
@@ -26,7 +25,7 @@ $ npm --version
 6.7.0
 ```
 
-##### Installing
+### Installing
 
 1. Clone the repository
     ```
@@ -41,25 +40,25 @@ $ npm --version
     $ npm install
     ```
 
-##### Start and watch
+### Start and watch
 ```
 $ npm start
 ```
 
-##### Simple build for production
+### Simple build for production
 ```
 $ npm run build
 ```
 
-##### Deployment
+#### Deployment
 ```
 $ npm run deploy
 ```
 
-#### Running the tests
+## Running the tests
 The project uses [Mocha.js](https://mochajs.org/) framework to run tests.
 
-##### Break down into unit tests
+### Break down into unit tests
 
 The tests ensure that:
 * input fields are not empty
@@ -67,15 +66,15 @@ The tests ensure that:
 * side lengths can actually form a triangle
 * triangles are classified correctly
 
-#### Built With
+### Built With
 * [React.js](https://reactjs.org/) - The web framework used
 * [Mocha.js](https://mochajs.org/) - Unit testing
 * [Tradeshift UI](http://ui.tradeshift.com/v12/#intro/) - UI components
 
-#### Authors
+## Authors
 * **Diana Tofan** - https://github.com/diana-tofan/triangleChallenge
 
-#### Implementation Choices
+## Implementation Choices
 React.js was mainly used for simplicity, performance, testability and a smooth state management.
 
 For testing purposes, Mocha.js was chosen due to its flexibility and compatibility with several JavaScript assertion libraries.
